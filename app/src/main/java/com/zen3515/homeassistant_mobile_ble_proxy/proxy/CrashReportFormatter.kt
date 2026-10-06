@@ -211,7 +211,8 @@ internal object CrashReportFormatter {
     }
 
     private fun formatTimestamp(timestampMs: Long): String {
-        return SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.US).format(Date(timestampMs))
+        // ZZZZZ ("+01:00") rather than XXX, which needs API 24.
+        return SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", Locale.US).format(Date(timestampMs))
     }
 
     private const val MINIMAL_STACK_FRAMES = 32

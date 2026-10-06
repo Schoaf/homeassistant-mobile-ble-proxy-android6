@@ -1,7 +1,19 @@
-# Home Assistant Mobile BLE Proxy
+# Home Assistant Mobile BLE Proxy – Android 6 port
 
-[![License](https://img.shields.io/github/license/zen3515/homeassistant-mobile-ble-proxy.svg?style=for-the-badge&color=yellow)](LICENSE)
-![GitHub all releases](https://img.shields.io/github/downloads/zen3515/homeassistant-mobile-ble-proxy/total?style=for-the-badge&logo=appveyor)
+[![License](https://img.shields.io/github/license/Schoaf/homeassistant-mobile-ble-proxy-android6.svg?style=for-the-badge&color=yellow)](LICENSE)
+![GitHub all releases](https://img.shields.io/github/downloads/Schoaf/homeassistant-mobile-ble-proxy-android6/total?style=for-the-badge&logo=appveyor)
+
+> **This is a fork.** The original app is
+> [zen3515/homeassistant-mobile-ble-proxy](https://github.com/zen3515/homeassistant-mobile-ble-proxy) –
+> all features and credit belong there. This fork is merely a port that also
+> runs on **Android 6 (API 23)**; the original requires Android 7+. If your
+> phone runs Android 7 or newer, use the original.
+>
+> Differences from the original:
+> - Minimum Android version lowered to 6.0.
+> - The Quick Settings tile is only available on Android 7+.
+> - Separate application ID (`at.schoaf.homeassistant_mobile_ble_proxy`), so it
+>   can be installed alongside the original.
 
 Android app that behaves like an ESPHome Bluetooth proxy and exposes the ESPHome native API on `6053/tcp`.
 
@@ -140,8 +152,8 @@ The report is bounded, redacts common secrets and network/device addresses, stay
 
 ## Downloads
 
-- [Download APK directly](https://github.com/zen3515/homeassistant-mobile-ble-proxy/releases)
-- [Use Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium%3A%2F%2Fapp%2F%7B%22id%22%3A%22com.zen3515.homeassistant_mobile_ble_proxy%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fzen3515%2Fhomeassistant-mobile-ble-proxy%22%2C%22author%22%3A%22Zen3515%22%2C%22name%22%3A%22HA%20Mobile%20BLE%20Proxy%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%5C%22homeassistant-mobile-ble-proxy-v.%2A-release%5C%5C%5C%5C.apk%5C%22%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22v%28.%2B%29%5C%22%7D%22%7D) (recommended)
+- [Download APK directly](https://github.com/Schoaf/homeassistant-mobile-ble-proxy-android6/releases)
+- [Use Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium%3A%2F%2Fapp%2F%7B%22id%22%3A%22at.schoaf.homeassistant_mobile_ble_proxy%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FSchoaf%2Fhomeassistant-mobile-ble-proxy-android6%22%2C%22author%22%3A%22Schoaf%22%2C%22name%22%3A%22HA%20Mobile%20BLE%20Proxy%20%28Android%206%29%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%5C%22homeassistant-mobile-ble-proxy-v.%2A-release%5C%5C%5C%5C.apk%5C%22%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22v%28.%2B%29%5C%22%7D%22%7D) (recommended)
 
 ## Screenshots
 

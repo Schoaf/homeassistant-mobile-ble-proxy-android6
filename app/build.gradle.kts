@@ -39,8 +39,8 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.zen3515.homeassistant_mobile_ble_proxy"
-        minSdk = 24
+        applicationId = "at.schoaf.homeassistant_mobile_ble_proxy"
+        minSdk = 23
         targetSdk = 36
         versionCode = releaseVersionCode
         versionName = releaseVersionName

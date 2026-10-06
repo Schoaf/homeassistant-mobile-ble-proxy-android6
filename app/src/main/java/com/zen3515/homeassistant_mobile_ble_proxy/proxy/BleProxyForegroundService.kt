@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.zen3515.homeassistant_mobile_ble_proxy.MainActivity
 import com.zen3515.homeassistant_mobile_ble_proxy.R
@@ -68,7 +69,7 @@ class BleProxyForegroundService : Service() {
                 val stopGeneration = lifecycleCoordinator.requestStop()
                 cancelStartup()
                 stopProxy()
-                stopForeground(STOP_FOREGROUND_REMOVE)
+                ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
                 lifecycleCoordinator.markStopped(stopGeneration)
                 stopSelfResult(startId)
                 CrashDiagnostics.recordLifecycle("service stop-command complete startId=$startId")
@@ -285,7 +286,7 @@ class BleProxyForegroundService : Service() {
                 return
             }
             ProxyRuntimeState.setServiceRunning(true, port)
-            BleProxyTileService.onServiceRunningChanged(applicationContext, true)
+            BleProxyTileUpdates.onServiceRunningChanged(applicationContext, true)
             logRuntime("Proxy listening on 0.0.0.0:$port (mac=$macAddress)")
             startSettingsSync()
             startScannerHealthWatchdog()
@@ -311,7 +312,7 @@ class BleProxyForegroundService : Service() {
             ProxyRuntimeState.setError("Failed to start proxy: $detail")
             logRuntime("Failed to start proxy: $detail")
             stopProxy()
-            stopForeground(STOP_FOREGROUND_REMOVE)
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
             cleanupStartId?.let(::stopSelfResult)
         } finally {
             if (lifecycleCoordinator.isCurrent(token)) {
@@ -351,7 +352,7 @@ class BleProxyForegroundService : Service() {
 
         started = false
         ProxyRuntimeState.setServiceRunning(false)
-        BleProxyTileService.onServiceRunningChanged(applicationContext, false)
+        BleProxyTileUpdates.onServiceRunningChanged(applicationContext, false)
         ProxyRuntimeState.setScannerState(RuntimeScannerState.IDLE)
         ProxyRuntimeState.setDesiredScanProfile(null)
         ProxyRuntimeState.setActiveScanProfile(null)

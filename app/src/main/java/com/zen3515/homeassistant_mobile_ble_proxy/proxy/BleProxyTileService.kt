@@ -8,9 +8,11 @@ import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import androidx.annotation.RequiresApi
 import com.zen3515.homeassistant_mobile_ble_proxy.MainActivity
 import com.zen3515.homeassistant_mobile_ble_proxy.R
 
+@RequiresApi(Build.VERSION_CODES.N)
 class BleProxyTileService : TileService() {
 
     override fun onTileAdded() {
@@ -108,17 +110,24 @@ class BleProxyTileService : TileService() {
 
     companion object {
         private const val TILE_START_REQUEST_CODE = 10_053
+    }
+}
 
-        fun onServiceRunningChanged(context: Context, running: Boolean) {
-            ProxyQuickSettingsTileStateStore.setServiceRunning(context, running)
-            requestRefresh(context)
-        }
+/**
+ * Kept outside [BleProxyTileService]: Quick Settings tiles need API 24, and
+ * touching that class (or its companion) on Android 6 fails class loading.
+ */
+object BleProxyTileUpdates {
+    fun onServiceRunningChanged(context: Context, running: Boolean) {
+        ProxyQuickSettingsTileStateStore.setServiceRunning(context, running)
+        requestRefresh(context)
+    }
 
-        private fun requestRefresh(context: Context) {
-            val component = ComponentName(context, BleProxyTileService::class.java)
-            runCatching {
-                requestListeningState(context, component)
-            }
+    private fun requestRefresh(context: Context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return
+        val component = ComponentName(context, BleProxyTileService::class.java)
+        runCatching {
+            TileService.requestListeningState(context, component)
         }
     }
 }
